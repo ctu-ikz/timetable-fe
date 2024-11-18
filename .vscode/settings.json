@@ -1,4 +1,4 @@
 {
-    "deno.enable": true,
+    "deno.enable": false,
     "workbench.colorTheme": "Visual Studio 2019 Dark"
 }
