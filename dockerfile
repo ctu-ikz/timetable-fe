@@ -1,25 +1,28 @@
-FROM oven/bun:1.0.0 AS builder
+FROM node:18-alpine AS builder
+
+RUN apk add --no-cache python3 make g++ 
 
 WORKDIR /app
 
-COPY bun.lockb package.json ./
-
-RUN bun install
+COPY package*.json ./
+RUN npm install
 
 COPY . .
 
-RUN bun run build
+RUN npm run build
 
-FROM oven/bun:1.0.0
+FROM node:18-alpine AS runner
+
+ENV NODE_ENV=production
 
 WORKDIR /app
 
+COPY --from=builder /app/package*.json ./
 COPY --from=builder /app/build ./build
-COPY --from=builder /app/package.json ./
 
-RUN bun install --production
+RUN npm install --only=production
 
 EXPOSE 3000
 
-CMD ["bun", "run", "start"]
+CMD ["npm", "run", "preview"]
 

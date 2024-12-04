@@ -23,7 +23,3 @@ vite.config.ts.timestamp-*
 # Bun
 bun.lockb
 .vscode/*
-
-# Bun
-bun.lockb
-.vscode/*
