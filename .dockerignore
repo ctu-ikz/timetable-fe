@@ -1,6 +1,0 @@
-node_modules
-bun.lockb.backup
-npm-debug.log
-Dockerfile
-docker-compose.yml
-*.env
